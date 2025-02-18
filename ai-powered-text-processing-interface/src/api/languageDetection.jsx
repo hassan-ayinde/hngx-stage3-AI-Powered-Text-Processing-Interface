@@ -16,11 +16,24 @@ export const detectLanguage = async (inputText, setError, setDetectedLanguage) =
         setError('Language detector is not available.');
         return;
       }
+
+      const apiToken = import.meta.env.VITE_LANGUAGE_API_TOKEN;
+      const apiOrigin = import.meta.env.VITE_API_ORIGIN;
+
+      if (!apiToken) {
+        setError('Missing API token. Check your .env file.');
+        return;
+      }
   
       if (canDetect === 'readily') {
-        detector = await self.ai.languageDetector.create();
+        detector = await self.ai.languageDetector.create({
+            token: apiToken,
+            origin: apiOrigin,
+        });
       } else {
         detector = await self.ai.languageDetector.create({
+            token: apiToken,
+            origin: apiOrigin,
           monitor(m) {
             m.addEventListener('downloadprogress', (e) => {
             //   console.log(`Downloaded ${e.loaded} of ${e.total} bytes.`);

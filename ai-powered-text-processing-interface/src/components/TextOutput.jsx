@@ -1,16 +1,25 @@
-import React from 'react'
+import React from 'react';
 
-const TextOutput = ({inputText}) => {
+const TextOutput = ({ inputText, detectedLanguage }) => {
   return (
     <div>
-        <div>
-            <input type="text" id="first_name" value={inputText} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" readOnly/>
+      <div>
+        <input
+          type="text"
+          id="first_name"
+          value={inputText}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          readOnly
+        />
 
-            {/* {languageDetection && <p>Detected Language: {languageDetection}</p>}
-            {error && <p style={{ color: 'red' }}>{error}</p>} */}
-        </div>
+        {detectedLanguage && (
+          <p className="mt-2 text-sm text-gray-700">
+            Detected Language: {detectedLanguage}
+          </p>
+        )}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default TextOutput
+export default TextOutput;

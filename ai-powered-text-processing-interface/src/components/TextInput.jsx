@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import ActionButton from './ActionButton';
-import { detectLanguage } from '../api/languageDetection';  // Assuming this is a helper function
+import { detectLanguage } from '../api/languageDetection';
 
-const TextInput = ({setInputText}) => {
-    const [localText, setLocalText] = useState('');
+const TextInput = ({ setInputText, setDetectedLanguage }) => {
+  const [localText, setLocalText] = useState('');
   const [error, setError] = useState('');
-  const [detectedLanguage, setDetectedLanguage] = useState('');
 
   const handleChange = (e) => {
     setLocalText(e.target.value);
@@ -17,7 +16,7 @@ const TextInput = ({setInputText}) => {
       return;
     }
     setInputText(localText); // Share the text with parent component
-    await detectLanguage(localText, setError, setDetectedLanguage);
+    await detectLanguage(localText, setError, setDetectedLanguage); // Pass the setDetectedLanguage to detectLanguage
   };
 
   return (
@@ -33,7 +32,6 @@ const TextInput = ({setInputText}) => {
       ></textarea>
       <ActionButton onClick={handleSubmit} />
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      {detectedLanguage && <p>Detected Language: {detectedLanguage}</p>}
     </div>
   );
 };

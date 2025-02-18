@@ -2,18 +2,22 @@ import React, { useState } from 'react';
 import ActionButton from './ActionButton';
 import { detectLanguage } from '../api/languageDetection';  // Assuming this is a helper function
 
-const TextInput = ({}) => {
-  const [inputText, setInputText] = useState('');
+const TextInput = ({setInputText}) => {
+    const [localText, setLocalText] = useState('');
   const [error, setError] = useState('');
   const [detectedLanguage, setDetectedLanguage] = useState('');
 
   const handleChange = (e) => {
-    setInputText(e.target.value);
+    setLocalText(e.target.value);
   };
 
   const handleSubmit = async () => {
-    const language = await detectLanguage(inputText, setError, setDetectedLanguage);
-    setDetectedLanguage(language);  // Update state when language is detected
+    if (!localText.trim()) {
+      setError('Please enter some text');
+      return;
+    }
+    setInputText(localText); // Share the text with parent component
+    await detectLanguage(localText, setError, setDetectedLanguage);
   };
 
   return (
@@ -22,7 +26,7 @@ const TextInput = ({}) => {
       <textarea
         id="message"
         rows="7"
-        value={inputText}
+        value={localText}
         onChange={handleChange}
         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 resize-none"
         placeholder="Write your thoughts here..."

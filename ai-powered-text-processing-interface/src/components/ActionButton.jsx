@@ -1,14 +1,13 @@
+// components/ActionButton.js
 import React from 'react';
-import { IoIosSend } from "react-icons/io";
+import { IoIosSend } from 'react-icons/io';
 
 const ActionButton = ({ onClick }) => {
   return (
-    <div className='text-3xl float-right cursor-pointer'>
-      <IoIosSend onClick={onClick} />
-    </div>
+    <span className="text-3xl float-right cursor-pointer" onClick={onClick}>
+      <IoIosSend />
+    </span>
   );
 };
 
 export default ActionButton;
-
-

@@ -26,7 +26,7 @@ const LanguageTranslator = ({ inputText, detectedLanguage}) => {
         }
 
         const apiToken = import.meta.env.VITE_TRANSLATOR_API_TOKEN;
-        const apiOrigin = import.meta.env.VITE_API_ORIGIN;
+        // const apiOrigin = import.meta.env.VITE_API_ORIGIN;
 
         if (!apiToken) {
           setError("Missing API token. Check your .env file.");
@@ -42,7 +42,7 @@ const LanguageTranslator = ({ inputText, detectedLanguage}) => {
         // Initialize the translator
         const options = {
           token: apiToken,
-          origin: apiOrigin,
+          // origin: apiOrigin,
           sourceLanguage: detectedLanguage || "en", // Fallback to English
           targetLanguage: selectedLanguage,
           experimental: false,
@@ -115,7 +115,7 @@ const LanguageTranslator = ({ inputText, detectedLanguage}) => {
         <button
           onClick={handleTranslate}
           className="ml-4 px-4 py-2 bg-blue-500 text-white rounded-md disabled:bg-gray-400 cursor-pointer"
-          // disabled={!translator || detectedLanguage === selectedLanguage}
+          disabled={!translator || detectedLanguage === selectedLanguage}
         >
           Translate
         </button>

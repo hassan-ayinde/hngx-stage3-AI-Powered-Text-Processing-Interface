@@ -2,6 +2,7 @@
 export const initializeSummarizer = async (setError) => {
     try {
       const apiToken = import.meta.env.VITE_SUMMARIZER_API_TOKEN;
+      console.log(apiToken)
       const apiOrigin = import.meta.env.VITE_SUMMARIZER_API_ORIGIN;
   
       if (!apiToken) {

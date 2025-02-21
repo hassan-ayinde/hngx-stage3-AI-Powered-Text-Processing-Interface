@@ -18,9 +18,9 @@ export const detectLanguage = async (inputText, setError, setDetectedLanguage) =
       }
 
       const apiToken = import.meta.env.VITE_LANGUAGE_API_TOKEN;
-      // const apiOrigin = import.meta.env.VITE_API_ORIGIN;
-      console.log(apiOrigin)
       console.log(apiToken)
+      const apiOrigin = import.meta.env.VITE_API_ORIGIN;
+      console.log(apiOrigin)
 
       if (!apiToken) {
         setError('Missing API token. Check your .env file.');
@@ -30,12 +30,12 @@ export const detectLanguage = async (inputText, setError, setDetectedLanguage) =
       if (canDetect === 'readily') {
         detector = await self.ai.languageDetector.create({
             token: apiToken,
-            // origin: apiOrigin,
+            origin: apiOrigin,
         });
       } else {
         detector = await self.ai.languageDetector.create({
             token: apiToken,
-            // origin: apiOrigin,
+            origin: apiOrigin,
           monitor(m) {
             m.addEventListener('downloadprogress', (e) => {
             //   console.log(`Downloaded ${e.loaded} of ${e.total} bytes.`);

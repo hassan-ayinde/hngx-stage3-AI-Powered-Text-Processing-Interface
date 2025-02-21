@@ -2,7 +2,7 @@
 export const initializeSummarizer = async (setError) => {
     try {
       const apiToken = import.meta.env.VITE_SUMMARIZER_API_TOKEN;
-      // const apiOrigin = import.meta.env.VITE_SUMMARIZER_API_ORIGIN;
+      const apiOrigin = import.meta.env.VITE_SUMMARIZER_API_ORIGIN;
   
       if (!apiToken) {
         setError("Missing API token. Check your .env file.");
@@ -22,7 +22,7 @@ export const initializeSummarizer = async (setError) => {
   
       const options = {
         token: apiToken,
-        // origin: apiOrigin,
+        origin: apiOrigin,
         
       };
   

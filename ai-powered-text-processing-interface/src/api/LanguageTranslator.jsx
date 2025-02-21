@@ -26,7 +26,7 @@ const LanguageTranslator = ({ inputText, detectedLanguage}) => {
         }
 
         const apiToken = import.meta.env.VITE_TRANSLATOR_API_TOKEN;
-        // const apiOrigin = import.meta.env.VITE_API_ORIGIN;
+        const apiOrigin = import.meta.env.VITE_API_ORIGIN;
 
         if (!apiToken) {
           setError("Missing API token. Check your .env file.");
@@ -42,7 +42,7 @@ const LanguageTranslator = ({ inputText, detectedLanguage}) => {
         // Initialize the translator
         const options = {
           token: apiToken,
-          // origin: apiOrigin,
+          origin: apiOrigin,
           sourceLanguage: detectedLanguage || "en", // Fallback to English
           targetLanguage: selectedLanguage,
           experimental: false,

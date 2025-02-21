@@ -26,6 +26,7 @@ const LanguageTranslator = ({ inputText, detectedLanguage}) => {
         }
 
         const apiToken = import.meta.env.VITE_TRANSLATOR_API_TOKEN;
+        console.log(apiToken)
         const apiOrigin = import.meta.env.VITE_API_ORIGIN;
 
         if (!apiToken) {
